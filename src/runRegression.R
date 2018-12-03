@@ -1,4 +1,14 @@
-This is the first line of my regression code.......
-this is a test
+# Analysis Section
+# Calculate distance to ship at the start of the CEE
+gmpts$d2ship <- rdist.earth.vec(cbind(kStart$longitude, kStart$latitude), 
+                                cbind(gmpts$longitude, gmpts$latitude))
 
-type 'o' to open another line in VIM text editor....
+gmpts %>% 
+  group_by(status) %>% 
+  summarize(mean = mean(d2ship, na.rm = TRUE))
+
+# Test the distance
+gmpts.fit <- with(gmpts, lmer(d2ship ~ status + (1 | trackNum)))
+gmpts.fit
+summary(gmpts.fit)
+
