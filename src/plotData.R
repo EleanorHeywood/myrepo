@@ -1,2 +1,4 @@
-this is the first line in my plot code
-
+# write a pdf of a plot
+pdf(file = "mypdf.pdf")
+hist(mtcars$disp)
+dev.off()
